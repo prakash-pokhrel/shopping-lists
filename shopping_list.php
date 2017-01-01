@@ -34,8 +34,8 @@
 
 							<tr>
 								<td><?php echo $row['id']; ?></td>
-								<td><a href="#"><?php echo $row['list_name']; ?></a></td>
-								<td><a href="#"><button class="btn btn-danger">Delete</button></a></td>
+								<td><a href="item.php?list_id=<?php echo $row['id']; ?>"><?php echo $row['list_name']; ?></a></td>
+								<td><a onclick="return confirm('Are you sure you want to delete this item?');" href="data.php?delete_id=<?php echo $row['id']; ?>"><button class="btn btn-danger">Delete</button></a></td>
 							</tr>
 
 						<?php } ?>
