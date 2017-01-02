@@ -33,12 +33,21 @@
 						if(mysqli_num_rows($result)){
 						$i = 0; ?>
 
-						<?php while($row = mysqli_fetch_array($result)){ ?>
+						<?php while($row = mysqli_fetch_array($result)){  ?>
+							<?php 
+								//initialise checked variable to uncheck
+								$checked = 'checked';
+								if($row['checked'] == 0){
+
+									$checked = 'unchecked';
+
+								}
+							?>
 
 							<tr>
 								<td><?php echo ++$i; ?></td>
 								<td><?php echo $row['item_name']; ?></td>
-								<td><?php echo $row['checked']; ?></td>
+								<td><input class="active" type="checkbox" value="<?php echo $row['id']; ?>" <?php echo $checked; ?>></td>
 								<td><a onclick="return confirm('Are you sure you want to delete this item?');" href="item_data.php?delete_id=<?php echo $row['id']; ?>&list_id=<?php echo $_GET['list_id']; ?>"><button class="btn btn-danger">Delete</button></a></td>
 							</tr>
 
@@ -60,3 +69,20 @@
 
 	</div>
 </div>
+
+<script type="text/javascript">
+    $("input.active").click(function() {
+        // store the values from the form checkbox box, then send via ajax below
+        var check_active = $(this).is(':checked') ? 1 : 0;
+        var check_id = $(this).attr('value');
+        $.ajax({
+            type: "POST",
+            url: 'demo_test_post.php',
+            data:'id='+check_id +'&active='+check_active,
+            success: function(){
+            }
+        });
+        return true;
+    });
+</script>
+
