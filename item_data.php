@@ -1,7 +1,7 @@
 <?php 
 include 'mysqli_connect.php';
 
-if($_POST){
+if(isset($_POST['list_name_submit'])){
 
 	//Inserting into database
 	if($_POST['list_name_submit']){
@@ -42,9 +42,9 @@ if($_POST){
 }else{
 
 	
-	//Getting all shopping list from database
+	//Getting all shopping list items from database
 	$sql = "SELECT * FROM tbl_item where list_id = ".$_GET['list_id'];
-	$result = mysqli_query($dbc, $sql);
+	$result = mysqli_query($dbc, $sql)or die('Error: ' . mysqli_error($dbc));
 
 }
 

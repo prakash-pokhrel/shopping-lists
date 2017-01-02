@@ -30,10 +30,12 @@
 						//Getting $result variable from data.php page
 						if(mysqli_num_rows($result)){ ?>
 
-						<?php while($row = mysqli_fetch_array($result)){ ?>
+						<?php 
+							$i = 0;
+							while($row = mysqli_fetch_array($result)){ ?>
 
 							<tr>
-								<td><?php echo $row['id']; ?></td>
+								<td><?php echo ++$i; ?></td>
 								<td><a href="item.php?list_id=<?php echo $row['id']; ?>"><?php echo $row['list_name']; ?></a></td>
 								<td><a onclick="return confirm('Are you sure you want to delete this list and item inside it?');" href="shopping_list_data.php?delete_id=<?php echo $row['id']; ?>"><button class="btn btn-danger">Delete</button></a></td>
 							</tr>

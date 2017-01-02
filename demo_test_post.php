@@ -1,4 +1,5 @@
 <?php 
+//Updating toggle checkbox
 include 'mysqli_connect.php';
 $id =  $_POST['id'];
 $active_value = $_POST['active'];

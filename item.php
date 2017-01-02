@@ -19,15 +19,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<form method="post" action="item_data.php?list_id=<?php echo $_GET['list_id']; ?>">
-							<td>Create New Item</td>
-							<td><input type="text" class="form-control" placeholder="New Item Name" name="item_name"></td>
-							<td></td>
-							<td><input type="submit" name="list_name_submit" class="btn btn-primary" value="Submit"></td>
-						</form>
-					</tr>
+					<?php if(isset($result_edit)){ ?>
 
+						<tr>
+							<form method="post" action="item_data.php?list_id=<?php echo $_GET['list_id']; ?>">
+								<td>Edit Item</td>
+								<td><input type="text" class="form-control" placeholder="New Item Name" name="item_name"></td>
+								<td></td>
+								<td><input type="submit" name="list_name_submit" class="btn btn-primary" value="Submit"></td>
+							</form>
+						</tr>
+
+					<?php }else{ ?>
+
+						<tr>
+							<form method="post" action="item_data.php?list_id=<?php echo $_GET['list_id']; ?>">
+								<td>Create New Item</td>
+								<td><input type="text" class="form-control" placeholder="New Item Name" name="item_name"></td>
+								<td></td>
+								<td><input type="submit" name="list_name_submit" class="btn btn-primary" value="Submit"></td>
+							</form>
+						</tr>
+
+					<?php } ?>
 					<?php 
 						//Getting $result variable from data.php page
 						if(mysqli_num_rows($result)){
@@ -48,7 +62,9 @@
 								<td><?php echo ++$i; ?></td>
 								<td><?php echo $row['item_name']; ?></td>
 								<td><input class="active" type="checkbox" value="<?php echo $row['id']; ?>" <?php echo $checked; ?>></td>
-								<td><a onclick="return confirm('Are you sure you want to delete this item?');" href="item_data.php?delete_id=<?php echo $row['id']; ?>&list_id=<?php echo $_GET['list_id']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+								<td>
+									<a onclick="return confirm('Are you sure you want to delete this item?');" href="item_data.php?delete_id=<?php echo $row['id']; ?>&list_id=<?php echo $_GET['list_id']; ?>"><button class="btn btn-danger">Delete</button></a>						
+								</td>
 							</tr>
 
 						<?php } ?>
@@ -79,9 +95,8 @@
             type: "POST",
             url: 'demo_test_post.php',
             data:'id='+check_id +'&active='+check_active,
-            success: function(){
-            }
         });
+
         return true;
     });
 </script>
