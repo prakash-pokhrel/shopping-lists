@@ -26,6 +26,8 @@ if($_POST){
 
 	//DELETING FROM DATABASE
 	$delete_id = $_GET['delete_id'];
+	$sql_delete_item = "DELETE FROM tbl_item where list_id = $delete_id";
+	$response_delete = mysqli_query($dbc,$sql_delete_item) or die('Error: ' . mysqli_error($dbc));
 	$sql_delete = "DELETE FROM tbl_list where id = $delete_id";
 	$response_delete = mysqli_query($dbc,$sql_delete) or die('Error: ' . mysqli_error($dbc));
 	if($response_delete){

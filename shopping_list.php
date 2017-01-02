@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<?php include 'data.php'; ?>
+<?php include 'shopping_list_data.php'; ?>
 <div class="panel panel-default">
 
 	<div class="panel-heading text-center"><h5>Shopping Lists</h5></div>
@@ -19,7 +19,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<form method="post" action="data.php">
+						<form method="post" action="shopping_list_data.php">
 							<td>Create New List</td>
 							<td><input type="text" class="form-control" placeholder="New List Name" name="list_name"></td>
 							<td><input type="submit" name="list_name_submit" class="btn btn-primary" value="Submit"></td>
@@ -35,7 +35,7 @@
 							<tr>
 								<td><?php echo $row['id']; ?></td>
 								<td><a href="item.php?list_id=<?php echo $row['id']; ?>"><?php echo $row['list_name']; ?></a></td>
-								<td><a onclick="return confirm('Are you sure you want to delete this item?');" href="data.php?delete_id=<?php echo $row['id']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+								<td><a onclick="return confirm('Are you sure you want to delete this list and item inside it?');" href="shopping_list_data.php?delete_id=<?php echo $row['id']; ?>"><button class="btn btn-danger">Delete</button></a></td>
 							</tr>
 
 						<?php } ?>
